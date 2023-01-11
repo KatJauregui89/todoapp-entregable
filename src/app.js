@@ -28,7 +28,7 @@ initModels();
 // \dt -> para ver las tablas
 // \d users -> para acceder a la tabla
 
-db.sync({force: false}) // devuelve una promesa
+db.sync({force: true}) // devuelve una promesa
 .then(() => console.log('Base de datos sincronizada'))
 .catch((error) => console.log(error))
 
@@ -116,14 +116,14 @@ app.delete('/users/:id', async (req, res) => {
 
 // -----------TO DO'S ----------------------------
 // Obtener todas las tareas
-app.get('/todos', async (req, res) => {
-    try {
-        const result = await Todos.findAll(); 
-        res.status(200).json(result)
-    } catch (error) {
-        console.log(error);
-    }
-});
+// app.get('/todos', async (req, res) => {
+//     try {
+//         const result = await Todos.findAll(); 
+//         res.status(200).json(result)
+//     } catch (error) {
+//         console.log(error);
+//     }
+// });
 
 
 app.delete('/todos/:id', async (req, res) => {

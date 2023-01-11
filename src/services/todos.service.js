@@ -9,6 +9,15 @@ class todosServices {
             throw(error)
         }
     }
+
+    static async update(id, field) {
+        try {
+            const result = await Todos.update(field, {where: {id}});
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = todosServices;

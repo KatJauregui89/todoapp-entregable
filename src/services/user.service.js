@@ -1,4 +1,4 @@
-const { getUserById } = require('../controllers/users.controller');
+const Todos = require('../models/todos.model');
 const Users = require('../models/users.model');
 
 class userServices {
@@ -19,6 +19,23 @@ class userServices {
         throw error;
     }
     
+    }
+
+    static async getWithTasks(id){
+        try {
+            const result = await Users.findOne({
+                where: {id},
+                attributes: ["username"],
+                include: {
+                    model: Todos,
+                    attributes: ["title"], // para que solo salga el título de la tarea
+                    as: 'task' // se pone el alias
+                }
+            });
+            return result;
+        } catch (error) {
+            throw error;
+        }
     }
 
     static async create(user){
